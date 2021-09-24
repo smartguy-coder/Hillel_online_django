@@ -33,11 +33,7 @@ class Post(models.Model):
     post_published = models.BooleanField(default=True)
 
     def __str__(self):
-        return {"TITLE": self.post_title,
-                "POST_TEXT": self.post_text,
-                "AUTHOR": self.author,
-                "POST_TIME": self.post_publish_time,
-                }
+        return f'"TITLE": {self.post_title}, "POST_TEXT": {self.post_text}, "AUTHOR": {self.author}'
 
     class Meta:
-        ordering = ['-post_publish_time ', 'post_title']
+        ordering = ['-post_publish_time', 'post_title']
