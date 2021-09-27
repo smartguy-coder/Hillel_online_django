@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import User, Tag, Post, Comment
+from .models import User, Post, Comment, Tag
 
 
 admin.site.site_header = "Admin dashboard for Django blog"
@@ -18,8 +18,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User)
-admin.site.register(Tag)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Tag)
 
 admin.site.unregister(Group)

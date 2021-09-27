@@ -1,0 +1,30 @@
+{% extends 'blog/base_blog.html' %}
+
+
+{% block title%}
+    Blog application - comments for the post "{{ detail.post_title }}"
+{% endblock %}
+
+{% block content%}
+    <h1 class="mb-10">Comments for the post '{{ detail.post_title }}'</h1>
+    <p>was published: {{ detail.post_publish_time  }}</p>
+    <p class="card-text">{{ detail.post_text }}</p>
+    <a href="{% url 'posts' %}" class="btn btn-primary">Back to all posts</a>
+    <hr>
+
+
+
+    {% for comment in detail.comment_set.all %}
+
+  <div class="card mb-4" style="width: 45rem;">
+            <div class="card-body">
+                <p class="card-text">{{ comment.comment_text }}</p>
+                <br/>
+                <i><p class="card-text">was published {{ comment.comment_time }} by author {{ comment.comment_author }}</p><i/>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

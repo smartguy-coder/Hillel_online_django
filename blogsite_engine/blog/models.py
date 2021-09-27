@@ -3,7 +3,6 @@ from django.db import models
 
 class User(models.Model):
     username = models.CharField(max_length=200)
-    user_login = models.CharField(max_length=200)
     user_banned = models.BooleanField(default=False)
 
     def __str__(self):
@@ -23,14 +22,15 @@ class Tag(models.Model):
         ordering = ['tag_category', ]
 
 
+
 class Post(models.Model):
     post_title = models.CharField(max_length=200, blank=False, unique=True)
     post_text = models.TextField(max_length=1000, blank=False)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, default=None, blank=True, null=True)
     post_publish_time = models.DateTimeField('time published', auto_now_add=True)
     post_amend_time = models.DateTimeField('time amended', auto_now=True)
-    categories = models.ManyToManyField(Tag)
     post_published = models.BooleanField(default=True)
+    category = models.ForeignKey(Tag, on_delete=models.SET_NULL, default=None, blank=True, null=True)
 
     def __str__(self):
         return f'"TITLE": {self.post_title}, "POST_TEXT": {self.post_text[0:50]+"..."}, "AUTHOR": {self.author}'
